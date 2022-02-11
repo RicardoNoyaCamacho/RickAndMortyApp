@@ -19,7 +19,7 @@
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
   <div class="col" *ngFor="let l of locations">
-    <div class="card h-100">
+    <div class="card h-100" (click)="list(l)">
       <div class="card-body">
         <h5 class="card-title">{{ l.name }}</h5>
         <p class="card-text">

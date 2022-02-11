@@ -1,1 +1,57 @@
-<p>location works!</p>
+<div *ngIf="loading" class="alert alert-info text-center" role="alert">
+  <h4 class="alert-heading">Cargando...</h4>
+
+  <p>
+    <i class="fa fa-sync fa-spin fa-2x"></i>
+  </p>
+  <p class="mb-0"></p>
+</div>
+
+<div *ngIf="error" class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">Error</h4>
+
+  <pre>
+          {{ error | json }}
+        </pre
+  >
+  <p class="mb-0"></p>
+</div>
+
+<div *ngIf="!loading && !error" class="row">
+  <div class="col">
+    <div class="row d-flex justify-content-between">
+      <h1 class="col-3">List of Residents</h1>
+      <button class="col-1 btn btn-danger" routerLink="/locations">
+        Regresar
+      </button>
+    </div>
+    <hr />
+
+    <h3>Name: {{ location?.name }}</h3>
+    <h3>Type: {{ location?.type }}</h3>
+    <h3>Dimensiions: {{ location?.dimension }}</h3>
+    <h3>Created: {{ location?.created | date }}</h3>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let l of location?.residents">
+        {{ l }}
+      </li>
+    </ul>
+
+    <!-- <div *ngIf="characters" class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col" *ngFor="let c of characters">
+        <div class="card h-100">
+          <img [src]="c.image" class="card-img-top" />
+          <div class="card-body">
+            <h5 class="card-title">{{ c.name }}</h5>
+            <p class="card-text">
+              {{ c.status }}
+            </p>
+            <p class="card-text">
+              <span class="text-muted">ID: {{ c.id }}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>

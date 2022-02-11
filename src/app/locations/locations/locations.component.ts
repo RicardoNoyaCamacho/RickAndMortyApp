@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.reducers';
 import { cargarLocations } from '../../store/actions/locations.actions';
+import { Router } from '@angular/router';
+import { Location } from '../../models/location.model';
 
 @Component({
   selector: 'app-locations',
@@ -17,7 +19,7 @@ export class LocationsComponent implements OnInit {
 
   locationsSubs?: Subscription;
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>, private router: Router) {}
 
   ngOnInit(): void {
     this.locationsSubs = this.store
@@ -28,6 +30,10 @@ export class LocationsComponent implements OnInit {
         this.error = error;
       });
     this.store.dispatch(cargarLocations());
+  }
+
+  list(l: Location) {
+    this.router.navigate(['/location', l.id]);
   }
 
   ngOnDestroy(): void {
