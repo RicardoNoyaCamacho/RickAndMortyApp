@@ -1,37 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.reducers';
 import * as locationActions from '../../store/actions/location.actions';
-import * as characterActions from '../../store/actions/character.actions';
 
 import { Location } from '../../models/location.model';
-import { Character } from '../../models/character.model';
-import { CharacterService } from '../../services/character.service';
+import * as characterActions from '../../store/actions/character.actions';
 
 @Component({
   selector: 'app-location',
   templateUrl: './location.component.html',
   styles: [],
 })
-export class LocationComponent implements OnInit {
+export class LocationComponent implements OnInit, OnDestroy {
   location!: Location | null;
-  characters: any[] = [];
   loading: boolean = false;
   error: any;
 
   regex = /(\d+)/g;
-  ids: any[] = [];
 
   locationSubs?: Subscription;
-  characterSubs?: any;
+
+  characters: any[] = [];
+  characterSubs?: Subscription;
+
+  ids: any[] = [];
+  subscriptions: Subscription[] = [];
 
   constructor(
     private router: ActivatedRoute,
     private route: Router,
-    private store: Store<AppState>,
-    private characterService: CharacterService
+    private store: Store<AppState>
   ) {}
 
   ngOnInit(): void {
@@ -49,12 +49,24 @@ export class LocationComponent implements OnInit {
         // });
 
         // this.ids.forEach((id) => {
-        //   this.characterSubs = this.characterService
-        //     .getCharacterById(id[0])
-        //     .subscribe((character) => this.characters.push(character));
+        //   console.log(id[0]);
+        //   // this.subscriptions.push(
+        //   //   this.store
+        //   //     .select('character')
+        //   //     .subscribe(({ character, loading, error }) => {
+        //   //       this.characters.push(character);
+        //   //       this.loading = loading;
+        //   //       this.error = error;
+        //   //     })
+        //   // );
+
+        //   // this.store.dispatch(characterActions.cargarCharacter(id[0]));
         // });
+
         this.loading = loading;
         this.error = error;
+
+        // this.characteres();
       });
 
     this.router.params.subscribe(({ id }) => {
@@ -62,12 +74,18 @@ export class LocationComponent implements OnInit {
     });
   }
 
-  // back() {
-  //   this.route.navigate(['/locations']);
+  // characteres() {
+  //   this.location?.residents.forEach((r) => {
+  //     this.http.get(r).subscribe((c) => this.characteresArray.push(c));
+  //   });
   // }
 
+  back() {
+    this.route.navigate(['/locations']);
+  }
+
   ngOnDestroy(): void {
-    this.characterSubs?.unsubscribe();
+    // this.subscriptions.forEach((s) => s.unsubscribe());
     this.locationSubs?.unsubscribe();
   }
 }

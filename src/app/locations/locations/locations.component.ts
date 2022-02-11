@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.reducers';
@@ -11,7 +11,7 @@ import { Location } from '../../models/location.model';
   templateUrl: './locations.component.html',
   styleUrls: ['./locations.component.css'],
 })
-export class LocationsComponent implements OnInit {
+export class LocationsComponent implements OnInit, OnDestroy {
   locations: any[] = [];
 
   loading: boolean = false;

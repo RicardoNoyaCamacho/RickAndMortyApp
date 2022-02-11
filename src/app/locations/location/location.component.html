@@ -21,19 +21,17 @@
   <div class="col">
     <div class="row d-flex justify-content-between">
       <h1 class="col-3">List of Residents</h1>
-      <button class="col-1 btn btn-danger" routerLink="/locations">
-        Regresar
-      </button>
+      <button class="col-1 btn btn-danger" (click)="back()">Regresar</button>
     </div>
     <hr />
 
     <h3>Name: {{ location?.name }}</h3>
     <h3>Type: {{ location?.type }}</h3>
-    <h3>Dimensiions: {{ location?.dimension }}</h3>
+    <h3>Dimensions: {{ location?.dimension }}</h3>
     <h3>Created: {{ location?.created | date }}</h3>
     <ul class="list-group">
-      <li class="list-group-item" *ngFor="let l of location?.residents">
-        {{ l }}
+      <li class="list-group-item" *ngFor="let r of location?.residents">
+        {{ r }}
       </li>
     </ul>
 

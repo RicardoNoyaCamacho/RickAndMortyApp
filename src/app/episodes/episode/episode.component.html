@@ -1,0 +1,38 @@
+<div *ngIf="loading" class="alert alert-info text-center" role="alert">
+  <h4 class="alert-heading">Cargando...</h4>
+
+  <p>
+    <i class="fa fa-sync fa-spin fa-2x"></i>
+  </p>
+  <p class="mb-0"></p>
+</div>
+
+<div *ngIf="error" class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">Error</h4>
+
+  <pre>
+            {{ error | json }}
+          </pre
+  >
+  <p class="mb-0"></p>
+</div>
+
+<div *ngIf="!loading && !error" class="row">
+  <div class="col">
+    <div class="row d-flex justify-content-between">
+      <h1 class="col-3">List of Residents</h1>
+      <button class="col-1 btn btn-danger" (click)="back()">Regresar</button>
+    </div>
+    <hr />
+
+    <h3>Name: {{ episode?.name }}</h3>
+    <h3>Air Date: {{ episode?.air_date }}</h3>
+    <h3>Episode: {{ episode?.episode }}</h3>
+    <h3>Created: {{ episode?.created | date }}</h3>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let r of episode?.characters">
+        {{ r }}
+      </li>
+    </ul>
+  </div>
+</div>

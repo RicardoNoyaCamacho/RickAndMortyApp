@@ -7,6 +7,7 @@ export interface AppState {
   locations: reducers.LocationsState;
   location: reducers.LocationState;
   episodes: reducers.EpisodesState;
+  episode: reducers.EpisodeState;
 }
 
 export const appReducers: ActionReducerMap<AppState> = {
@@ -15,4 +16,5 @@ export const appReducers: ActionReducerMap<AppState> = {
   locations: reducers.locationsReducer,
   location: reducers.locationReducer,
   episodes: reducers.episodesReducer,
+  episode: reducers.episodeReducer,
 };

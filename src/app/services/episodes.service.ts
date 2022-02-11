@@ -16,7 +16,7 @@ export class EpisodesService {
       .pipe(map((resp: any) => resp['results']));
   }
 
-  getEpisodesById(id: string) {
+  getEpisodeById(id: string) {
     return this.http.get(`${this._url}/${id}`);
   }
 }

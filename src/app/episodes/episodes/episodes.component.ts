@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Episode } from '../../models/episode.model';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.reducers';
 import { cargarEpisodes } from '../../store/actions/episodes.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-episodes',
   templateUrl: './episodes.component.html',
   styles: [],
 })
-export class EpisodesComponent implements OnInit {
+export class EpisodesComponent implements OnInit, OnDestroy {
   episodes: Episode[] = [];
 
   loading: boolean = false;
@@ -18,7 +19,7 @@ export class EpisodesComponent implements OnInit {
 
   episodesSubs?: Subscription;
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>, private router: Router) {}
 
   ngOnInit(): void {
     this.episodesSubs = this.store
@@ -29,6 +30,10 @@ export class EpisodesComponent implements OnInit {
         this.error = error;
       });
     this.store.dispatch(cargarEpisodes());
+  }
+
+  list(e: Episode) {
+    this.router.navigate(['/episode', e.id]);
   }
 
   ngOnDestroy(): void {

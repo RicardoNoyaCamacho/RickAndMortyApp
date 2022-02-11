@@ -19,7 +19,7 @@
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
   <div class="col" *ngFor="let e of episodes">
-    <div class="card h-100">
+    <div class="card h-100" (click)="list(e)">
       <div class="card-body">
         <h5 class="card-title">{{ e.name }}</h5>
         <p class="card-text">
