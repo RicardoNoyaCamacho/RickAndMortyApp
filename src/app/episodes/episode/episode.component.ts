@@ -1,0 +1,16 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-episode',
+  templateUrl: './episode.component.html',
+  styles: [
+  ]
+})
+export class EpisodeComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+}
