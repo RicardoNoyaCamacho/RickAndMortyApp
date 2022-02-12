@@ -9,6 +9,7 @@ import { LocationComponent } from './locations/location/location.component';
 
 import { EpisodesComponent } from './episodes/episodes/episodes.component';
 import { EpisodeComponent } from './episodes/episode/episode.component';
+import { SearchComponent } from './shared/search/search.component';
 
 const routes: Routes = [
   { path: 'characters', component: CharactersComponent },
@@ -17,6 +18,9 @@ const routes: Routes = [
   { path: 'location/:id', component: LocationComponent },
   { path: 'episodes', component: EpisodesComponent },
   { path: 'episode/:id', component: EpisodeComponent },
+  { path: 'characters/:value', component: SearchComponent },
+  { path: 'locations/:value', component: SearchComponent },
+  { path: 'episodes/:value', component: SearchComponent },
   { path: '', redirectTo: 'characters', pathMatch: 'full' },
 ];
 

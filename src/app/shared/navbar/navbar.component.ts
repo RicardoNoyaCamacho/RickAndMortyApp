@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,13 +8,28 @@ import { Router } from '@angular/router';
   styles: [],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private router: Router) {}
+  disable: boolean = false;
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private searchService: SearchService
+  ) {}
+
+  @ViewChild('txtInput') myInput!: ElementRef;
 
   ngOnInit(): void {}
 
-  irCharacter(id: string) {
-    if (!id) return;
-
-    this.router.navigate(['/character', id]);
+  irCharacter(value: string) {
+    if (window.location.href.includes('character')) {
+      this.myInput.nativeElement.value = '';
+      this.router.navigate(['characters', value]);
+    } else if (window.location.href.includes('location')) {
+      this.myInput.nativeElement.value = '';
+      this.router.navigate(['locations', value]);
+    } else if (window.location.href.includes('episode')) {
+      this.myInput.nativeElement.value = '';
+      this.router.navigate(['episodes', value]);
+    }
   }
 }

@@ -44,16 +44,6 @@
             Episodes
           </a>
         </li>
-
-        <!-- <li class="nav-item">
-          <a
-            class="nav-link"
-            routerLinkActive="active"
-            routerLink="character/1"
-          >
-            Character
-          </a>
-        </li> -->
       </ul>
       <div class="d-flex">
         <input
@@ -63,6 +53,7 @@
           aria-label="Buscar"
           #txtInput
           (keyup.enter)="irCharacter(txtInput.value)"
+          [disabled]="disable"
         />
         <button
           class="btn btn-outline-success"
