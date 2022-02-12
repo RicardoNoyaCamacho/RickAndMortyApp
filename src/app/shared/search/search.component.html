@@ -1,7 +1,7 @@
 <div class="row row-cols-1 row-cols-md-3 g-4">
   <div class="col" *ngFor="let c of search">
-    <div class="card h-100">
-      <img [src]="c.image" class="card-img-top" />
+    <div class="card h-100" (click)="desc(c)">
+      <img *ngIf="c.image" [src]="c.image" class="card-img-top" />
       <div class="card-body">
         <h5 class="card-title">{{ c.name }}</h5>
         <p class="card-text">

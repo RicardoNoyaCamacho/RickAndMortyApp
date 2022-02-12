@@ -47,7 +47,13 @@ export class SearchComponent implements OnInit {
       .subscribe((info) => (this.search = info));
   }
 
-  // desc(c: Character) {
-  //   this.router.navigate(['/character', c.id]);
-  // }
+  desc(c: any) {
+    if (window.location.href.includes('character')) {
+      this.router.navigate([`character`, c.id]);
+    } else if (window.location.href.includes('location')) {
+      this.router.navigate([`location`, c.id]);
+    } else if (window.location.href.includes('episode')) {
+      this.router.navigate([`episode`, c.id]);
+    }
+  }
 }

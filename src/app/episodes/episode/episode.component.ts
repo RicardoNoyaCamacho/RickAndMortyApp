@@ -43,7 +43,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   }
 
   back() {
-    this.route.navigate(['/locations']);
+    this.route.navigate(['/episodes']);
   }
 
   ngOnDestroy(): void {
