@@ -33,7 +33,6 @@ export class EpisodeComponent implements OnInit, OnDestroy {
       .select('episode')
       .subscribe(({ episode, loading, error }) => {
         this.episode = episode;
-        console.log(episode);
         this.loading = loading;
         this.error = error;
       });
